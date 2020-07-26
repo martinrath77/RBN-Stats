@@ -1,8 +1,22 @@
 import pandas as pd
 import numpy as np
 import requests
+from datetime import date, timedelta
 
-df = pd.read_csv('20200712.zip',keep_default_na=False,na_values='')
+yesterday = date.today() - timedelta(days=1)
+yesterday = yesterday.strftime("%Y%m%d")
+
+def getRawDataRBN(date=yesterday):
+    url = 'http://www.reversebeacon.net/raw_data/dl.php?f='+date
+    with requests.get(url, stream=True) as r:
+        r.raise_for_status()
+        with open(date+'.zip', 'wb') as f:
+            for chunk in r.iter_content(chunk_size=8192): 
+                f.write(chunk)
+
+# getRawDataRBN()
+
+df = pd.read_csv(yesterday+'.zip',keep_default_na=False,na_values='')
 df = df.dropna(subset=['tx_mode'])
 print(df.tail(5))
 # print(df.info())
@@ -15,10 +29,27 @@ print(len(df['dx'].unique()),'Spoted stations on',len(df['dx_cont'].unique()),'C
 # print(df.describe())
 print(df['tx_mode'].unique())
 print(df['mode'].unique())
+print(df['band'].unique())
 
 cw_df = df[df['tx_mode'] == 'CW']
 print(cw_df['speed'].mean().round(1),'WPM Average CW Speed')
 
+df = df[df['callsign'] == '9V1RM']
 
-# df = df[df['mode'].isnull()]
-# print(df)
+for station in df['callsign'].unique():
+    print('-------')
+    print(station)
+    station_df = df[df['callsign'] == station]
+    print('-------')
+    print(len(station_df.index),'Total Spots')
+    print(len(station_df['dx'].unique()),'Spoted stations on',len(station_df['dx_cont'].unique()),'Continents and',len(station_df['dx_pfx'].unique()),'DXCC entities')
+    print('-------')
+    for mode in station_df['mode'].unique():
+        band_df = station_df[station_df['mode'] == mode]
+        print(band_df.head(5))
+        for band in band_df['band'].unique():
+            # print(band)
+            band_df = band_df[band_df['band'] == band]
+            if len(band_df.index)>0:
+                print(mode,'-',band,'-',len(band_df.index),'Total Spots -',len(band_df['dx'].unique()),'Spoted stations on',len(band_df['dx_cont'].unique()),'Continents and',len(band_df['dx_pfx'].unique()),'DXCC entities')
+    
