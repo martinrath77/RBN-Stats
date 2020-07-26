@@ -20,7 +20,7 @@ def getRawDataRBN(date=yesterday):
         return path2file
 
 datafile = getRawDataRBN()
-print(datafile)
+
 df = pd.read_csv(datafile,keep_default_na=False,na_values='')
 df = df.dropna(subset=['tx_mode'])
 print(df.tail(5))
