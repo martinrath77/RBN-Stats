@@ -30,7 +30,7 @@ def getRawDataRBN(date=yesterday):
                 f.write(chunk)
         return path2file
 
-# datafile = getRawDataRBN()
+datafile = getRawDataRBN()
 
 try :
     datafile
@@ -68,9 +68,9 @@ for band in sorted_active_bands:
 # top10 = df.groupby(['de_cont','callsign','band']).agg({'dx':['count'],'speed':['mean']})
 # print(top10.to_string())
 
-top10_pivot = df.pivot(index='callsign',values='dx',columns='band',aggfunc='count')
-print(top10_pivot)
-print('\nBreakdown by Skimmer')
+#top10_pivot = df.pivot(index='callsign',values='dx',columns='band',aggfunc='count')
+#print(top10_pivot)
+#print('\nBreakdown by Skimmer')
 
 #Change to your callsign is your want to filter. You can also uncomment this line to get the results for all skimmers.  
 df = df[df['callsign'] == '9V1RM']
