@@ -5,55 +5,82 @@ from datetime import date, timedelta
 from pathlib import Path
 
 yesterday = date.today() - timedelta(days=1)
+yesterday_full = yesterday.strftime("%A %B %m, %Y")
 yesterday = yesterday.strftime("%Y%m%d")
+bands = ['160m','80m','60m','40m','30m','20m','17m','15m','12m','10m','6m','4m']
 
 def getRawDataRBN(date=yesterday):
     url = 'http://www.reversebeacon.net/raw_data/dl.php?f='+date
     with requests.get(url, stream=True) as r:
         r.raise_for_status()
         file = date+'.zip'
-        path2file= Path.cwd() / 'data' / file
-        print(path2file)
+        directory_path = Path.cwd() / 'data'
+
+        if directory_path.is_dir() == True:
+            pass
+        else:
+            print('Creating directory',directory_path)
+            directory_path.mkdir()
+
+        path2file= directory_path / file
+        print('Fetching',file,'from the RBN archive and saving it to',path2file)
+
         with path2file.open('wb') as f:
             for chunk in r.iter_content(chunk_size=8192):
                 f.write(chunk)
         return path2file
 
-datafile = getRawDataRBN()
+# datafile = getRawDataRBN()
+
+try :
+    datafile
+except NameError:
+    file = yesterday + '.zip'
+    datafile = Path.cwd() / 'data' / file
 
 df = pd.read_csv(datafile,keep_default_na=False,na_values='')
 df = df.dropna(subset=['tx_mode'])
-print(df.tail(5))
-# print(df.info())
-# Skimmers_call = df['callsign'].unique()
-# print(Skimmers_call)
+
+print('-------')
+print('Summary of the RBN on',yesterday_full)
+print('-------\n')
 print(len(df.index),'Total Spots')
 print(len(df['callsign'].unique()),'Active Skimmers on',len(df['de_cont'].unique()),'Continents and',len(df['de_pfx'].unique()),'DXCC entities' )
 print(len(df['dx'].unique()),'Spoted stations on',len(df['dx_cont'].unique()),'Continents and',len(df['dx_pfx'].unique()),'DXCC entities')
-
-# print(df.describe())
-print(df['tx_mode'].unique())
-print(df['mode'].unique())
-print(df['band'].unique())
-
 cw_df = df[df['tx_mode'] == 'CW']
 print(cw_df['speed'].mean().round(1),'WPM Average CW Speed')
+print('\n')
 
+# print(df['tx_mode'].unique())
+# print(df['mode'].unique())
+
+#Getting the active bands array and sorting according the the bands list
+active_bands = df['band'].unique().tolist()
+sorted_active_bands = [band for band in bands if band in active_bands]
+for band in sorted_active_bands:
+    band_df = df[df['band'] == band]
+    if len(band_df.index)>0:
+        print(band,'-',len(band_df.index),'Total Spots -',len(band_df['dx'].unique()),'Spoted stations on',len(band_df['dx_cont'].unique()),'Continents and',len(band_df['dx_pfx'].unique()),'DXCC entities')
+
+
+print('\nBreakdown by Skimmer')
 df = df[df['callsign'] == '9V1RM']
 
-for station in df['callsign'].unique():
+skimmers = sorted(df['callsign'].unique())
+
+for station in skimmers:
+    print('\n')
     print('-------')
     print(station)
     station_df = df[df['callsign'] == station]
-    print('-------')
+    print('-------\n')
     print(len(station_df.index),'Total Spots')
     print(len(station_df['dx'].unique()),'Spoted stations on',len(station_df['dx_cont'].unique()),'Continents and',len(station_df['dx_pfx'].unique()),'DXCC entities')
-    print('-------')
-    for mode in station_df['mode'].unique():
-        band_df = station_df[station_df['mode'] == mode]
-        print(band_df.head(5))
-        for band in band_df['band'].unique():
-            # print(band)
-            band_df = band_df[band_df['band'] == band]
-            if len(band_df.index)>0:
-                print(mode,'-',band,'-',len(band_df.index),'Total Spots -',len(band_df['dx'].unique()),'Spoted stations on',len(band_df['dx_cont'].unique()),'Continents and',len(band_df['dx_pfx'].unique()),'DXCC entities')
+    print('-------\n')
+    active_bands = df['band'].unique().tolist()
+    sorted_active_bands = [band for band in bands if band in active_bands]
+    for band in sorted_active_bands:
+    # print(band)
+        band_df = station_df[station_df['band'] == band]
+        if len(band_df.index)>0:
+            print(band,'-',len(band_df.index),'Total Spots -',len(band_df['dx'].unique()),'Spoted stations on',len(band_df['dx_cont'].unique()),'Continents and',len(band_df['dx_pfx'].unique()),'DXCC entities')
