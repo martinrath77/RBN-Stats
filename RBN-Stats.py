@@ -30,7 +30,7 @@ def getRawDataRBN(date=yesterday):
                 f.write(chunk)
         return path2file
 
-datafile = getRawDataRBN()
+# datafile = getRawDataRBN()
 
 try :
     datafile
@@ -53,6 +53,7 @@ print('\n')
 
 # print(df['tx_mode'].unique())
 # print(df['mode'].unique())
+# print(df.info())
 
 #Getting the active bands array and sorting according the the bands list
 active_bands = df['band'].unique().tolist()
@@ -63,7 +64,13 @@ for band in sorted_active_bands:
         print(band,'-',len(band_df.index),'Total Spots -',len(band_df['dx'].unique()),'Spoted stations on',len(band_df['dx_cont'].unique()),'Continents and',len(band_df['dx_pfx'].unique()),'DXCC entities')
 
 
+# top10 = df['callsign'].groupby(df['de_cont','band']).value_counts()
+# top10 = df.groupby(['de_cont','callsign','band']).agg({'dx':['count'],'speed':['mean']})
+# print(top10.to_string())
+
 print('\nBreakdown by Skimmer')
+
+#Change to your callsign is your want to filter. You can also uncomment this line to get the results for all skimmers.  
 df = df[df['callsign'] == '9V1RM']
 
 skimmers = sorted(df['callsign'].unique())
