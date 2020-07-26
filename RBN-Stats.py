@@ -30,7 +30,7 @@ def getRawDataRBN(date=yesterday):
                 f.write(chunk)
         return path2file
 
-# datafile = getRawDataRBN()
+datafile = getRawDataRBN()
 
 try :
     datafile
