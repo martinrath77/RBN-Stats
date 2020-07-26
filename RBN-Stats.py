@@ -2,6 +2,7 @@ import pandas as pd
 import numpy as np
 import requests
 from datetime import date, timedelta
+from pathlib import Path
 
 yesterday = date.today() - timedelta(days=1)
 yesterday = yesterday.strftime("%Y%m%d")
@@ -10,13 +11,17 @@ def getRawDataRBN(date=yesterday):
     url = 'http://www.reversebeacon.net/raw_data/dl.php?f='+date
     with requests.get(url, stream=True) as r:
         r.raise_for_status()
-        with open('data/'+date+'.zip', 'wb') as f:
-            for chunk in r.iter_content(chunk_size=8192): 
+        file = date+'.zip'
+        path2file= Path.cwd() / 'data' / file
+        print(path2file)
+        with path2file.open('wb') as f:
+            for chunk in r.iter_content(chunk_size=8192):
                 f.write(chunk)
+        return path2file
 
-getRawDataRBN()
-
-df = pd.read_csv('data/'+yesterday+'.zip',keep_default_na=False,na_values='')
+datafile = getRawDataRBN()
+print(datafile)
+df = pd.read_csv(datafile,keep_default_na=False,na_values='')
 df = df.dropna(subset=['tx_mode'])
 print(df.tail(5))
 # print(df.info())
@@ -52,4 +57,3 @@ for station in df['callsign'].unique():
             band_df = band_df[band_df['band'] == band]
             if len(band_df.index)>0:
                 print(mode,'-',band,'-',len(band_df.index),'Total Spots -',len(band_df['dx'].unique()),'Spoted stations on',len(band_df['dx_cont'].unique()),'Continents and',len(band_df['dx_pfx'].unique()),'DXCC entities')
-    
