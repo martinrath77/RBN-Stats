@@ -10,13 +10,13 @@ def getRawDataRBN(date=yesterday):
     url = 'http://www.reversebeacon.net/raw_data/dl.php?f='+date
     with requests.get(url, stream=True) as r:
         r.raise_for_status()
-        with open(date+'.zip', 'wb') as f:
+        with open('data/'+date+'.zip', 'wb') as f:
             for chunk in r.iter_content(chunk_size=8192): 
                 f.write(chunk)
 
-# getRawDataRBN()
+getRawDataRBN()
 
-df = pd.read_csv(yesterday+'.zip',keep_default_na=False,na_values='')
+df = pd.read_csv('data/'+yesterday+'.zip',keep_default_na=False,na_values='')
 df = df.dropna(subset=['tx_mode'])
 print(df.tail(5))
 # print(df.info())
