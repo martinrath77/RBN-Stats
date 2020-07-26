@@ -30,13 +30,15 @@ def getRawDataRBN(date=yesterday):
                 f.write(chunk)
         return path2file
 
-datafile = getRawDataRBN()
 
-try :
-    datafile
-except NameError:
-    file = yesterday + '.zip'
-    datafile = Path.cwd() / 'data' / file
+file = yesterday + '.zip'
+datafile = Path.cwd() / 'data' / file
+
+if datafile.exists() == True:
+    print(datafile,'is an existing file')
+else:
+    print(datafile,'is NOT an existing file')
+    datafile = getRawDataRBN()
 
 df = pd.read_csv(datafile,keep_default_na=False,na_values='')
 df = df.dropna(subset=['tx_mode'])
