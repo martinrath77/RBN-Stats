@@ -66,6 +66,17 @@ for band in sorted_active_bands:
         print(band,'-',len(band_df.index),'Total Spots -',len(band_df['dx'].unique()),'Spoted stations on',len(band_df['dx_cont'].unique()),'Continents and',len(band_df['dx_pfx'].unique()),'DXCC entities')
 
 
+ww_ncdxf_df = df[df['mode'] == 'NCDXF B']
+if len(ww_ncdxf_df.index) > 0:
+    print('\n-------')
+    print('Northern DX Californian Club Beacons')
+    print('-------\n')
+
+    print(len(ww_ncdxf_df['dx'].unique()),'NCDXF Beacons heard on', len(ww_ncdxf_df['dx_cont'].unique()),'Continents\n')
+    df_pivot = pd.pivot_table(ww_ncdxf_df,values='mode',index=['dx_cont','dx'],columns='band',aggfunc='count')
+    df_pivot = df_pivot.fillna('')
+    print(df_pivot)
+
 # top10 = df['callsign'].groupby(df['de_cont','band']).value_counts()
 # top10 = df.groupby(['de_cont','callsign','band']).agg({'dx':['count'],'speed':['mean']})
 # print(top10.to_string())
@@ -74,8 +85,8 @@ for band in sorted_active_bands:
 #print(top10_pivot)
 #print('\nBreakdown by Skimmer')
 
-#Change to your callsign is your want to filter. You can also uncomment this line to get the results for all skimmers.  
-df = df[df['callsign'] == '9V1RM']
+#Change to your callsign is your want to filter. You can also uncomment this line to get the results for all skimmers.
+df = df[df['callsign'] == 'W3RGA']
 
 skimmers = sorted(df['callsign'].unique())
 
@@ -96,7 +107,7 @@ for station in skimmers:
         if len(band_df.index)>0:
             print(band,'-',len(band_df.index),'Total Spots -',len(band_df['dx'].unique()),'Spoted stations on',len(band_df['dx_cont'].unique()),'Continents and',len(band_df['dx_pfx'].unique()),'DXCC entities')
     # for mode in sorted_active_bands:
-    
+
     ncdxf_df = station_df[station_df['mode'] == 'NCDXF B']
     if len(ncdxf_df.index) > 0:
         print('\n-------')
@@ -107,7 +118,7 @@ for station in skimmers:
 
         # print(ncdxf_df.to_string())
         # ncdxf_List = ncdxc_df['dx'].unique()
-        
+
         # for beacon in ncdxf_df['dx'].unique():
         #     print(beacon)
         #     ncdxf_df = station_df[station_df['dx'] == beacon]
@@ -115,7 +126,32 @@ for station in skimmers:
         #         for band in ncdxf_df['band'].unique():
         #             beacon_ncdxf_df = ncdxf_df[ncdxf_df['band'] == band]
         #             print(band,'-',len(beacon_ncdxf_df.index))
-         
+
         ncdxf_df = station_df[station_df['mode'] == 'NCDXF B']
         df_pivot = pd.pivot_table(ncdxf_df,values='mode',index=['dx_cont','dx'],columns='band',aggfunc='count')
+        df_pivot = df_pivot.fillna('')
+        print(df_pivot)
+
+    beacon_df = station_df[station_df['mode'] == 'BEACON']
+
+    if len(beacon_df.index) > 0:
+        print('\n-------')
+        print('Other Beacons')
+        print('-------\n')
+
+        print(len(beacon_df['dx'].unique()),'Other Beacons heard on', len(beacon_df['dx_cont'].unique()),'Continents\n')
+
+        # print(beacon_df.to_string())
+        # beacon_List = ncdxc_df['dx'].unique()
+
+        # for beacon in beacon_df['dx'].unique():
+        #     print(beacon)
+        #     beacon_df = station_df[station_df['dx'] == beacon]
+        #     if len(beacon_df.index)>0:
+        #         for band in beacon_df['band'].unique():
+        #             beacon_beacon_df = beacon_df[beacon_df['band'] == band]
+        #             print(band,'-',len(beacon_beacon_df.index))
+
+        beacon_df = station_df[station_df['mode'] == 'BEACON']
+        df_pivot = pd.pivot_table(beacon_df,values='mode',index=['dx_cont','dx'],columns='band',aggfunc='count')
         print(df_pivot)
