@@ -54,8 +54,8 @@ print(cw_df['speed'].mean().round(1),'WPM Average CW Speed')
 print('\n')
 
 # print(df['tx_mode'].unique())
-# print(df['mode'].unique())
-# print(df.info())
+print(df['mode'].unique())
+# p rint(df.info())
 
 #Getting the active bands array and sorting according the the bands list
 active_bands = df['band'].unique().tolist()
@@ -95,3 +95,23 @@ for station in skimmers:
         band_df = station_df[station_df['band'] == band]
         if len(band_df.index)>0:
             print(band,'-',len(band_df.index),'Total Spots -',len(band_df['dx'].unique()),'Spoted stations on',len(band_df['dx_cont'].unique()),'Continents and',len(band_df['dx_pfx'].unique()),'DXCC entities')
+    # for mode in sorted_active_bands:
+    
+    ncdxf_df = station_df[station_df['mode'] == 'NCDXF B']
+    if len(ncdxf_df.index) > 0:
+        print('\nNorthern DX Californian Club Beacons\n')
+        print(len(ncdxf_df['dx'].unique()),'NCDXF Beacons heard on', len(ncdxf_df['dx_cont'].unique()),'Continents')
+        print(ncdxf_df.to_string())
+        # ncdxf_List = ncdxc_df['dx'].unique()
+        
+        for beacon in ncdxf_df['dx'].unique():
+            print(beacon)
+            ncdxf_df = station_df[station_df['dx'] == beacon]
+            if len(ncdxf_df.index)>0:
+                for band in ncdxf_df['band'].unique():
+                    beacon_ncdxf_df = ncdxf_df[ncdxf_df['band'] == band]
+                    print(band,'-',len(beacon_ncdxf_df.index))
+        
+        ncdxf_df = station_df[station_df['mode'] == 'NCDXF B']
+        df_pivot = pd.pivot_table(ncdxf_df,values='mode',index=['dx'],columns='band',aggfunc='count')
+        print(df_pivot)
