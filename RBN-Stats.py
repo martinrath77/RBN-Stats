@@ -42,7 +42,8 @@ else:
 
 df = pd.read_csv(datafile,keep_default_na=False,na_values='')
 df = df.dropna(subset=['tx_mode'])
-
+print(df.info())
+print(df.sample())
 print('-------')
 print('Summary of the RBN on',yesterday_full)
 print('-------\n')
@@ -50,7 +51,7 @@ print(len(df.index),'Total Spots')
 print(len(df['callsign'].unique()),'Active Skimmers on',len(df['de_cont'].unique()),'Continents and',len(df['de_pfx'].unique()),'DXCC entities' )
 print(len(df['dx'].unique()),'Spoted stations on',len(df['dx_cont'].unique()),'Continents and',len(df['dx_pfx'].unique()),'DXCC entities')
 cw_df = df[df['tx_mode'] == 'CW']
-print(cw_df['speed'].mean().round(1),'WPM Average CW Speed')
+#print(cw_df['speed'].mean().round(1),'WPM Average CW Speed')
 print('\n')
 
 # print(df['tx_mode'].unique())
@@ -73,9 +74,13 @@ if len(ww_ncdxf_df.index) > 0:
     print('-------\n')
 
     print(len(ww_ncdxf_df['dx'].unique()),'NCDXF Beacons heard on', len(ww_ncdxf_df['dx_cont'].unique()),'Continents\n')
-    df_pivot = pd.pivot_table(ww_ncdxf_df,values='mode',index=['dx_cont','dx'],columns='band',aggfunc='count')
-    df_pivot = df_pivot.fillna('')
-    print(df_pivot)
+    # df_pivot = pd.pivot_table(ww_ncdxf_df,values='mode',index=['dx_cont','dx'],columns='band',aggfunc='count')
+    # df_pivot = df_pivot.fillna('')
+    # print(df_pivot)
+    ww_ncdxf_df = ww_ncdxf_df.groupby(['callsign','band'])['dx'].count()
+    ww_ncdxf_df = ww_ncdxf_df.unstack('band')
+    ww_ncdxf_df = ww_ncdxf_df.fillna('')
+    print(ww_ncdxf_df.to_string())
 
 # top10 = df['callsign'].groupby(df['de_cont','band']).value_counts()
 # top10 = df.groupby(['de_cont','callsign','band']).agg({'dx':['count'],'speed':['mean']})
@@ -86,7 +91,7 @@ if len(ww_ncdxf_df.index) > 0:
 #print('\nBreakdown by Skimmer')
 
 #Change to your callsign is your want to filter. You can also uncomment this line to get the results for all skimmers.
-df = df[df['callsign'] == 'W3RGA']
+df = df[df['callsign'] == '9V1RM']
 
 skimmers = sorted(df['callsign'].unique())
 
@@ -128,9 +133,10 @@ for station in skimmers:
         #             print(band,'-',len(beacon_ncdxf_df.index))
 
         ncdxf_df = station_df[station_df['mode'] == 'NCDXF B']
-        df_pivot = pd.pivot_table(ncdxf_df,values='mode',index=['dx_cont','dx'],columns='band',aggfunc='count')
-        df_pivot = df_pivot.fillna('')
-        print(df_pivot)
+        # df_pivot = pd.pivot_table(ncdxf_df,values='mode',index=['dx_cont','dx'],columns='band',aggfunc='count')
+        # df_pivot = df_pivot.fillna('')
+        # print(df_pivot)
+        print(ncdxf_df.groupby(['dx_cont','dx','band'])['callsign'].count())
 
     beacon_df = station_df[station_df['mode'] == 'BEACON']
 
