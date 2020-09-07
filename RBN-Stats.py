@@ -42,9 +42,7 @@ else:
 
 df = pd.read_csv(datafile,keep_default_na=False,na_values='')
 df = df.dropna(subset=['tx_mode'])
-print(df.info())
-print(df.sample())
-print('-------')
+#print(df.info())
 print('Summary of the RBN on',yesterday_full)
 print('-------\n')
 print(len(df.index),'Total Spots')
