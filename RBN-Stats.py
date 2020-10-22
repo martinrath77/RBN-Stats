@@ -1,12 +1,21 @@
 import pandas as pd
 import numpy as np
 import requests
-from datetime import date, timedelta
+from datetime import date, timedelta, datetime
 from pathlib import Path
 
-yesterday = date.today() - timedelta(days=1)
-yesterday_full = yesterday.strftime("%A %B %m, %Y")
+# Define the date to pull based on UTC time. The file will usually take about
+# 5 minutes to get generated and uploaded to the RBN.
+now_utc = datetime.utcnow()
+current_utc_time = now_utc.strftime("%H:%M:%S")
+if current_utc_time > '00:05:00':
+    yesterday = date.today() - timedelta(days=1)
+else:
+    yesterday = date.today() - timedelta(days=2)
+
+yesterday_full = yesterday.strftime("%A %B %d, %Y")
 yesterday = yesterday.strftime("%Y%m%d")
+
 bands = ['160m','80m','60m','40m','30m','20m','17m','15m','12m','10m','6m','4m']
 
 def getRawDataRBN(date=yesterday):
