@@ -4,7 +4,7 @@ import requests
 from datetime import date, timedelta, datetime
 from pathlib import Path
 
-#Define if you would like to filter on a call sign
+#Define if you would like to filter on a call sign. Leave blank to display all calls.
 mycall = '9v1rm'
 
 # Define the date to pull based on UTC time. The file will usually take about
