@@ -4,17 +4,20 @@ import requests
 from datetime import date, timedelta, datetime
 from pathlib import Path
 
+#Define if you would like to filter on a call sign
+mycall = '9v1rm'
+
 # Define the date to pull based on UTC time. The file will usually take about
 # 5 minutes to get generated and uploaded to the RBN.
 now_utc = datetime.utcnow()
 current_utc_time = now_utc.strftime("%H:%M:%S")
-print(current_utc_time)
-if current_utc_time < '00:05:00':
+# print(current_utc_time)
+if current_utc_time > '00:16:00':
     yesterday = date.today() - timedelta(days=1)
-    print('D1')
+    # print('D1')
 else:
     yesterday = date.today() - timedelta(days=2)
-    print('D2')
+    # print('D2')
 
 yesterday_full = yesterday.strftime("%A %B %d, %Y")
 yesterday = yesterday.strftime("%Y%m%d")
@@ -101,7 +104,9 @@ if len(ww_ncdxf_df.index) > 0:
 #print('\nBreakdown by Skimmer')
 
 #Change to your callsign is your want to filter. You can also uncomment this line to get the results for all skimmers.
-df = df[df['callsign'] == '9V1RM']
+if len(mycall) > 1:
+    mycall = mycall.upper()
+    df = df[df['callsign'] == mycall]
 
 skimmers = sorted(df['callsign'].unique())
 
