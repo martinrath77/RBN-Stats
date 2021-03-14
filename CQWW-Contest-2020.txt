@@ -1,0 +1,234 @@
+Summary of the RBN on Saturday November 28, 2020
+-------
+
+4856026 Total Spots
+208 Active Skimmers on 6 Continents and 49 DXCC entities
+31779 Spoted stations on 6 Continents and 246 DXCC entities
+
+
+160m - 399363 Total Spots - 3443 Spoted stations on 6 Continents and 144 DXCC entities
+80m - 1199963 Total Spots - 9461 Spoted stations on 6 Continents and 176 DXCC entities
+60m - 959 Total Spots - 173 Spoted stations on 4 Continents and 27 DXCC entities
+40m - 1584655 Total Spots - 14055 Spoted stations on 6 Continents and 202 DXCC entities
+30m - 22254 Total Spots - 1373 Spoted stations on 6 Continents and 80 DXCC entities
+20m - 1020573 Total Spots - 11724 Spoted stations on 6 Continents and 206 DXCC entities
+17m - 7797 Total Spots - 707 Spoted stations on 6 Continents and 79 DXCC entities
+15m - 571242 Total Spots - 8278 Spoted stations on 6 Continents and 187 DXCC entities
+12m - 558 Total Spots - 141 Spoted stations on 6 Continents and 41 DXCC entities
+10m - 47893 Total Spots - 2185 Spoted stations on 6 Continents and 147 DXCC entities
+6m - 456 Total Spots - 60 Spoted stations on 3 Continents and 17 DXCC entities
+4m - 119 Total Spots - 3 Spoted stations on 1 Continents and 3 DXCC entities
+
+-------
+Northern DX Californian Club Beacons
+-------
+
+14 NCDXF Beacons heard on 6 Continents
+
+band      10m 12m  15m 17m  20m
+callsign                       
+3D2AG                3   6    1
+9V1RM       1  19   22  39   55
+BD7LLL                        4
+CX6VM              160   1  126
+DE1LON                        1
+DK9IP                         1
+DL3DTH          9   15  40   53
+DL9GTB               1       38
+DO4DXA               4        3
+EA5WU                5        7
+EA8/DF4UE       3    3  29   15
+ES5PC               53       67
+G0LUJ       3  15   16  35   62
+G4ZFE               16  42   57
+GSWL1                         3
+HB9DCO               9   3   26
+K2DB                          1
+K2PO/7               3       12
+K9LC                 7   3    2
+KD7YZ       8       47  49   63
+KM3T            6   37  82   95
+KM3T-2              43       97
+KO7SS               12  19   46
+LZ4UX           1       26   12
+NC7J                     5   10
+OE9GHV              21  56  143
+OE9GHV/9             5  32  119
+OH6BG           6   38  76   89
+RN4WA               11       11
+SM7IUN          2              
+VE2WU                        11
+VE6WZ                         4
+VE7CC       3   3    9  23   47
+VU3KAZ     17  31  131  28   38
+W1NT-6              26  36   53
+W2AXR                         6
+W3OA                          9
+W3OA-2                   3     
+W3RGA       1       47       65
+WA7LNW                   9    1
+WZ7I        1   6   35  68   83
+
+
+-------
+9V1RM
+-------
+
+10764 Total Spots
+1110 Spoted stations on 6 Continents and 105 DXCC entities
+-------
+
+160m - 54 Total Spots - 11 Spoted stations on 3 Continents and 7 DXCC entities
+80m - 171 Total Spots - 58 Spoted stations on 3 Continents and 27 DXCC entities
+40m - 5113 Total Spots - 648 Spoted stations on 6 Continents and 85 DXCC entities
+30m - 5 Total Spots - 5 Spoted stations on 1 Continents and 2 DXCC entities
+20m - 3063 Total Spots - 501 Spoted stations on 6 Continents and 72 DXCC entities
+17m - 41 Total Spots - 5 Spoted stations on 3 Continents and 4 DXCC entities
+15m - 2132 Total Spots - 363 Spoted stations on 5 Continents and 52 DXCC entities
+12m - 20 Total Spots - 3 Spoted stations on 2 Continents and 3 DXCC entities
+10m - 164 Total Spots - 32 Spoted stations on 2 Continents and 14 DXCC entities
+6m - 1 Total Spots - 1 Spoted stations on 1 Continents and 1 DXCC entities
+
+-------
+Northern DX Californian Club Beacons
+-------
+
+4 NCDXF Beacons heard on 3 Continents
+
+dx_cont  dx      band
+AF       ZS6DN   17m      7
+                 20m      8
+AS       JA2IGY  15m      1
+                 20m      5
+         VR2B    10m      1
+                 12m     18
+                 15m     11
+                 17m     16
+                 20m     22
+OC       VK6RBP  12m      1
+                 15m     10
+                 17m     16
+                 20m     20
+Name: callsign, dtype: int64
+
+Summary of the RBN on Sunday November 29, 2020
+-------
+
+4804251 Total Spots
+205 Active Skimmers on 6 Continents and 50 DXCC entities
+31730 Spoted stations on 6 Continents and 239 DXCC entities
+
+
+160m - 350758 Total Spots - 2996 Spoted stations on 6 Continents and 141 DXCC entities
+80m - 1183701 Total Spots - 9144 Spoted stations on 6 Continents and 174 DXCC entities
+60m - 836 Total Spots - 161 Spoted stations on 3 Continents and 27 DXCC entities
+40m - 1458863 Total Spots - 13510 Spoted stations on 6 Continents and 193 DXCC entities
+30m - 21912 Total Spots - 1315 Spoted stations on 6 Continents and 85 DXCC entities
+20m - 1133802 Total Spots - 12625 Spoted stations on 6 Continents and 216 DXCC entities
+17m - 8360 Total Spots - 725 Spoted stations on 6 Continents and 80 DXCC entities
+15m - 594673 Total Spots - 8569 Spoted stations on 6 Continents and 186 DXCC entities
+12m - 645 Total Spots - 169 Spoted stations on 6 Continents and 44 DXCC entities
+10m - 49716 Total Spots - 2465 Spoted stations on 6 Continents and 144 DXCC entities
+6m - 586 Total Spots - 72 Spoted stations on 3 Continents and 18 DXCC entities
+4m - 216 Total Spots - 7 Spoted stations on 3 Continents and 7 DXCC entities
+
+-------
+Northern DX Californian Club Beacons
+-------
+
+14 NCDXF Beacons heard on 6 Continents
+
+band      10m 12m 15m 17m  20m
+callsign                      
+3D2AG                        4
+9V1RM           8  18  31   44
+BD7LLL                       6
+CX6VM              99       53
+DD5XX                        2
+DK9IP                        4
+DL3DTH         13  18  37   43
+DL9GTB                      36
+DO4DXA              2        3
+EA8/DF4UE      10  12  34    5
+ES5PC              50       66
+G4ZFE       1   6  12  32   61
+JR1BFZ/2        1             
+K2PO/7              1       10
+K9LC               14   1     
+KD7YZ       3      35  55   49
+KM3T                         9
+KM3T-2              3       14
+KO7SS           3   2   6   17
+KO7SS-7             7   9   26
+KU7T                    8   18
+LZ4UX                   7    8
+NC7J                    4   19
+OE9GHV             12  46  109
+OE9GHV/9            6  23  115
+OH6BG           7  32  71   65
+RN4WA               6        4
+SM7IUN          5   2   4     
+UA6SWL                       7
+VE2WU                        9
+VE6WZ                        6
+VE7CC               6  24   42
+VU3KAZ     22  29  68  21   16
+W1NT-6          7  22  31   36
+W2AXR                       12
+W3OA                1       10
+W3OA-2                  5     
+W3RGA       2      35       35
+WA7LNW                  2    1
+WZ7I            8  20  59   63
+
+
+-------
+9V1RM
+-------
+
+9491 Total Spots
+1077 Spoted stations on 6 Continents and 105 DXCC entities
+-------
+
+160m - 34 Total Spots - 6 Spoted stations on 2 Continents and 4 DXCC entities
+80m - 313 Total Spots - 84 Spoted stations on 4 Continents and 32 DXCC entities
+40m - 4941 Total Spots - 668 Spoted stations on 6 Continents and 87 DXCC entities
+30m - 5 Total Spots - 5 Spoted stations on 3 Continents and 3 DXCC entities
+20m - 2486 Total Spots - 444 Spoted stations on 6 Continents and 68 DXCC entities
+17m - 37 Total Spots - 5 Spoted stations on 3 Continents and 5 DXCC entities
+15m - 1571 Total Spots - 317 Spoted stations on 6 Continents and 50 DXCC entities
+12m - 9 Total Spots - 3 Spoted stations on 2 Continents and 3 DXCC entities
+10m - 95 Total Spots - 21 Spoted stations on 2 Continents and 6 DXCC entities
+
+-------
+Northern DX Californian Club Beacons
+-------
+
+4 NCDXF Beacons heard on 3 Continents
+
+dx_cont  dx      band
+AF       ZS6DN   15m      1
+                 17m      6
+                 20m      1
+AS       JA2IGY  15m      1
+                 17m      1
+                 20m      5
+         VR2B    12m      7
+                 15m     11
+                 17m     14
+                 20m     17
+OC       VK6RBP  12m      1
+                 15m      5
+                 17m     10
+                 20m     21
+Name: callsign, dtype: int64
+
+-------
+Other Beacons
+-------
+
+1 Other Beacons heard on 1 Continents
+
+band            10m
+dx_cont dx         
+OC      VK4RST    1
